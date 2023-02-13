@@ -73,4 +73,13 @@ public class MVCController {
 		return uploadByMultipartFile(title,multi,request);
 		
 	}
+	
+	@PostMapping(value="/commandObject",produces="text/plain;charset=utf-8")
+	public String uploadByCommandObject(MultiPartCommand command, HttpServletRequest request) throws Exception{
+		
+		MultipartFile multi = command.getFile();
+		String title = command.getTitle();
+		
+		return uploadByMultipartFile(title, multi, request);
+	}
 }
