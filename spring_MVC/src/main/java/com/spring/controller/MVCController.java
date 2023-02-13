@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.jsp.command.SearchCriteria;
 
@@ -61,5 +62,15 @@ public class MVCController {
 		request.setAttribute("uploadedFilename", dest.getName());
 		request.setAttribute("uploadPath", dest.getAbsoluteFile());
 		return url;
+	}
+	
+	@PostMapping(value="/multipartHttpServletRequest",produces="text/plain;charset=utf-8")
+	public String uploadMultipartHttpServletRequest(MultipartHttpServletRequest request) throws Exception{
+		
+		String title = request.getParameter("title");
+		MultipartFile multi = request.getFile("file");
+		
+		return uploadByMultipartFile(title,multi,request);
+		
 	}
 }
